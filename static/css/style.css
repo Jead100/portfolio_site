@@ -1,0 +1,47 @@
+body { 
+    background-color: #f8f9fa; 
+}
+
+.navbar { 
+    background-color: #343a40; 
+}
+
+.navbar-brand, .nav-link { 
+    color: #ffffff !important; 
+}
+
+.hero { 
+    background: linear-gradient(135deg, #6b7280, #1f2937); 
+    color: white; 
+    padding: 5rem 0; 
+}
+
+.card { 
+    transition: transform 0.3s; 
+}
+
+.card:hover { 
+    transform: scale(1.05); 
+}
+
+.footer { 
+    background-color: #343a40; color: white; padding: 2rem 0; 
+}
+
+/* Hero Section Profile Image */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    /* Optional enhancements */
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

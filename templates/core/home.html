@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero text-center">
+    <div class="container">
+        {% if bio.profile_picture %}
+            <img src="{{ bio.profile_picture.url }}" alt="Profile" class="profile-img mb-3">
+        {% endif %}
+        <h1>{{ bio.name|default:"Your Name" }}</h1>
+        <p class="lead">{{ bio.tagline|default:"Your Tagline" }}</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">About Me</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p>{{ bio.description|default:"Your bio goes here." }}</p>
+                <p><strong>Email:</strong> {{ bio.email|default:"your.email@example.com" }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">My Projects</h2>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                            {% if project.link %}
+                                <a href="{{ project.link }}" class="btn btn-primary" target="_blank">View Project</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No projects yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Resume Section -->
+<section id="resume" class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Resume</h2>
+        <p>Download my resume to learn more about my skills and experience.</p>
+        <a href="/media/resume.pdf" class="btn btn-primary" download>Download Resume</a>
+    </div>
+</section>
+{% endblock %}
