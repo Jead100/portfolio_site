@@ -30,7 +30,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     'localhost', # for local dev
-    'jordanead.onrender.com' # our Render domain
+    '127.0.0.1', # also common for local dev
+    'jordanead.onrender.com', # our Render domain
 ]
 
 
@@ -43,8 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'core',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,11 +139,22 @@ if not DEBUG:
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Cloudinary stores and serves media files reliably
+USE_CLOUDINARY = config('USE_CLOUDINARY', default=False, cast=bool)
+
+if USE_CLOUDINARY:
+    # No need to configure MEDIA_URL or MEDIA_ROOT in production
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': config('CLOUDINARY_API_KEY'),
+        'API_SECRET': config('CLOUDINARY_API_SECRET'),
+    }
+else:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
