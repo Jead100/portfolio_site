@@ -43,12 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage', # Must come before staticfiles
     'django.contrib.staticfiles',
     'cloudinary',
-    'cloudinary_storage',
     'core',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,20 +129,16 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Media files
+MEDIA_URL = '/media/'
 
-# Cloudinary stores and serves media files reliably
+
+# Cloudinary configuration - Cloudinary stores and serves media files reliably
 USE_CLOUDINARY = config('USE_CLOUDINARY', default=False, cast=bool)
 
 if USE_CLOUDINARY:
-    # No need to configure MEDIA_URL or MEDIA_ROOT in production
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
@@ -151,8 +146,22 @@ if USE_CLOUDINARY:
         'API_SECRET': config('CLOUDINARY_API_SECRET'),
     }
 else:
-    MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
+
+# Storage backends configuration (modern Django 5.2 configuration)
+STORAGES = {
+    'default': {
+        'BACKEND': DEFAULT_FILE_STORAGE,
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage' if not DEBUG
+        else 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    },
+}
+
+# For cloudinary_storage compatibility (cloudinary_storage's collectstatic hook expects 
+# the old-style STATICFILES_STORAGE setting)
+STATICFILES_STORAGE = STORAGES['staticfiles']['BACKEND']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
