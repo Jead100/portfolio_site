@@ -11,5 +11,5 @@ python manage.py collectstatic --no-input
 # Apply any outstanding database migrations
 python manage.py migrate
 
-# Create superuser (to be executed only once, then delete it)
+# Create superuser (to be executed only once, then commented out)
 # python manage.py createsuperuser --noinput
