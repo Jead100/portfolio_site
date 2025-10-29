@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
 }
 
@@ -67,4 +67,24 @@ body {
 
 section {
     animation: fadeIn 1s ease-in-out;
+}
+
+/* Optional Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; /* Bold headings */
+}
+
+.lead {
+    font-weight: 400; /* Regular for lead text */
+    line-height: 1.6; /* Better readability */
+}
+
+p, .card-text {
+    font-weight: 300; /* Lighter for body text */
+    line-height: 1.7;
+}
+
+.nav-link, .navbar-brand {
+    font-weight: 500; /* Medium weight for navigation */
 }
