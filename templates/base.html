@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Jordan · Portfolio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Google Fonts -->
@@ -26,7 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mailto:{{ bio.email|default:'your.email@example.com' }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:{{ bio.email|default:'jordan@example.com' }}">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +39,7 @@
     <!-- Footer -->
     <footer class="footer bg-dark text-white text-center py-4">
         <div class="container">
-            <p class="mb-0">&copy; 2025 Jordan Ascanoa. All rights reserved.</p>
+            <p class="mb-0">&copy; {% now "Y" %} Jordan Ascanoa. All rights reserved.</p>
         </div>
     </footer>
 
