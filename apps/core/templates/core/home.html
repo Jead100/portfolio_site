@@ -10,7 +10,7 @@
                 {% if bio.profile_picture %}
                     <img src="{{ bio.profile_picture.url }}" alt="Profile" class="profile-img mb-4">
                 {% endif %}
-                <h1 class="display-4 fw-bold mb-3">{{ bio.name|default:"Jordan Ascanoa" }}</h1>
+                <h1 class="display-4 fw-bold mb-3">{{ bio.first_name|default:"Jordan" }}</h1>
                 <p class="lead mb-4">{{ bio.tagline|default:"Innovative Developer | Problem Solver | Tech Enthusiast" }}</p>
                 <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
             </div>
@@ -28,13 +28,19 @@
                 <p><strong>Email:</strong> <a href="mailto:{{ bio.email|default:'your.email@example.com' }}">{{ bio.email|default:"your.email@example.com" }}</a></p>
             </div>
             <div class="col-lg-6">
-                <!-- Optional: Add skills or other elements here -->
+                <!-- Skills Section -->
                 <div class="skills-card bg-light p-4 rounded shadow">
                     <h5 class="fw-bold mb-3">Key Skills</h5>
                     <ul class="list-unstyled">
-                        <li><span class="badge bg-primary me-2">Python</span> <span class="badge bg-primary me-2">Django</span> <span class="badge bg-primary me-2">Bootstrap</span></li>
-                        <li><span class="badge bg-primary me-2">JavaScript</span> <span class="badge bg-primary me-2">React</span> <span class="badge bg-primary me-2">SQL</span></li>
-                        <!-- Add more as needed -->
+                        {% if skills %}
+                            <li>
+                                {% for skill in skills %}
+                                   <span class="badge bg-primary me-2">{{ skill.name }}</span>
+                                {% endfor %}
+                            </li>
+                        {% else %}
+                            <li><em>No skills yet.</em></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
