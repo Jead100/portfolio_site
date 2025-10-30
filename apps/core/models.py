@@ -9,8 +9,34 @@ class Bio(models.Model):
     email = models.EmailField()
     profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
+    @property
+    def first_name(self):
+        return self.name.split()[0] if self.name else ""
+
     def __str__(self):
         return self.name
+
+
+class Skill(models.Model):
+    class Category(models.TextChoices):
+        BACKEND = "backend", "Backend"
+        FRONTEND = "frontend", "Frontend"
+        DEVOPS = "devops", "DevOps"
+        DATA = "data", "Data"
+        TOOLS = "tools", "Tools/Other"
+    
+    name = models.CharField(max_length=50, unique=True)
+    category = models.CharField(max_length=20, choices=Category.choices, blank=True)
+    level = models.PositiveSmallIntegerField(default=3)
+    priority = models.PositiveSmallIntegerField(default=0)  # controls display order
+    pinned = models.BooleanField(default=True)              # controls visibility
+
+    class Meta:
+        ordering = ["priority", "name"]
+
+    def __str__(self):
+        return self.name
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -21,6 +47,7 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Resume(models.Model):
     file = models.FileField(upload_to="resumes/")
