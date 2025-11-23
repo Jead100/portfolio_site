@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.db import transaction
 
-from .models import Bio, Project, Resume, Skill
+from .models import Bio, Project, Resume, Skill, Technology
 
 
 @admin.register(Bio)
@@ -12,7 +12,8 @@ class BioAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("title", "created_at")
-    search_fields = ("title",)
+    search_fields = ("title", "description")
+    filter_horizontal = ("tech_stack",)
 
 
 @admin.action(description="Make selected resume active (deactivates all others)")
@@ -42,5 +43,11 @@ class ResumeAdmin(admin.ModelAdmin):
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ("name", "category", "priority", "pinned")
+    list_display = ("name", "category", "level", "priority", "pinned")
+    search_fields = ("name", "category")
+
+
+@admin.register(Technology)
+class TechAdmin(admin.ModelAdmin):
+    list_display = ("name", "priority")
     search_fields = ("name",)

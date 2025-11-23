@@ -1,31 +1,80 @@
+/* =========================================
+   Global Typography & Reset
+   ========================================= */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f3f4f6;
+    color: #374151;
+    overflow-x: hidden; /* Prevents horizontal scrollbars on animations */
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+}
+
+/* Underline decoration for section titles */
+h2.fw-bold {
+    position: relative;
+    display: inline-block;
+}
+
+h2.fw-bold::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #0d6efd;
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+p, .card-text {
+    font-weight: 400;
+    line-height: 1.7;
+    color: #4b5563;
+}
+
+.lead {
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* =========================================
+   Navigation (Glassmorphism)
+   ========================================= */
 .navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(33, 37, 41, 0.85) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
+    letter-spacing: -0.5px;
 }
 
 .nav-link {
     font-weight: 500;
+    margin: 0 5px;
     transition: color 0.3s;
 }
 
 .nav-link:hover {
-    color: #0d6efd !important;
+    color: #60a5fa !important;
 }
 
+/* =========================================
+   Hero Section
+   ========================================= */
 .hero {
     position: relative;
-    min-height: 100vh; 
-    background: linear-gradient(135deg, #6b7280, #1f2937); 
-    background-size: cover; 
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6b7280, #1f2937);
+    background-size: cover;
     background-position: center;
+    padding-top: 80px;
 }
 
 .profile-img {
@@ -33,58 +82,184 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
+    border: 4px solid rgba(255, 255, 255, 1.0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s;
 }
 
 .profile-img:hover {
     transform: scale(1.1);
 }
 
+.hero .social-links a {
+    transition: transform 0.2s, color 0.2s;
+    display: inline-block;
+}
+
+.hero .social-links a:hover {
+    transform: translateY(-3px);
+    color: #60a5fa !important;
+}
+
+/* =========================================
+   About Me Info
+   ========================================= */
+
+.about-info {
+    padding: 0.2rem 0.75rem;
+    border-left: 3px solid #4b556340;
+}
+
+.info-row {
+    padding-left: 0.15rem;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.92rem;
+    line-height: 1.3;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-row strong {
+    margin-right: 4px;
+}
+
+.info-row i {
+    /* color: #0d6efd; */
+    font-size: 1rem;
+    margin-right: 6px;
+    margin-top: 2px;
+}
+
+.info-row a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.info-row a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   Cards & Projects
+   ========================================= */
 .card {
-    transition: box-shadow 0.3s, transform 0.3s;
+    background-color: #ffffff;
+    border: none; /* Remove default bootstrap border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-8px);
 }
 
+.card-img-top {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* =========================================
+   Skills & Badges
+   ========================================= */
 .skills-card {
     border-left: 4px solid #0d6efd;
+    background-color: #ffffff !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.skills-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    background-color: #f8fafc !important;
+    border-left-color: #0b5ed7;
+}
+
+/* Custom styling for skill pills to look softer */
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.3em 1em;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Overrides bg-primary to soften it */
+.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+/* "Modern SaaS" look for badges (Light blue bg, dark text) */
+.badge.bg-primary {
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
+}
+
+.badge.bg-primary:hover {
+    background-color: #d4ebfb !important;
+    color: #0b5ed7 !important;
+}
+
+.badge.bg-light.text-dark.border:hover {
+    background-color: #e5e7ebab !important;
+    color: #000000 !important;
+}
+
+/* =========================================
+   Footer & Utilities
+   ========================================= */
 .footer {
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(33, 37, 41, 0.85) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Add subtle animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Animations */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 section {
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-/* Optional Typography Enhancements */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700; /* Bold headings */
+/* Button tweaks */
+
+.btn-primary, .btn-code {
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+
 }
 
-.lead {
-    font-weight: 400; /* Regular for lead text */
-    line-height: 1.6; /* Better readability */
+.btn-primary {
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+    transition: all 0.2s;
 }
 
-p, .card-text {
-    font-weight: 300; /* Lighter for body text */
-    line-height: 1.7;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.3);
 }
 
-.nav-link, .navbar-brand {
-    font-weight: 500; /* Medium weight for navigation */
+.btn-code {
+    background-color: #1f2937;   /* matches hero gradient's dark gray */
+    color: #ffffff !important;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-code:hover {
+    background-color: #111827;   /* slightly darker for hover effect */
+    transform: translateY(-2px);
 }

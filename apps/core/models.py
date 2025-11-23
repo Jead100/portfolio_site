@@ -3,10 +3,16 @@ from django.db.models import Q
 
 
 class Bio(models.Model):
+    """
+    Stores personal profile information and contact details.
+    """
+    
     name = models.CharField(max_length=100)
     tagline = models.CharField(max_length=200)
     description = models.TextField()
     email = models.EmailField()
+    github_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True)
     profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
     @property
@@ -18,6 +24,10 @@ class Bio(models.Model):
 
 
 class Skill(models.Model):
+    """
+    Represents a technical skill, its category, and proficiency level.
+    """
+
     class Category(models.TextChoices):
         BACKEND = "backend", "Backend"
         FRONTEND = "frontend", "Frontend"
@@ -38,18 +48,46 @@ class Skill(models.Model):
         return self.name
 
 
+class Technology(models.Model):
+    """
+    Represents a specific language, framework, or tool used in a project.
+    """
+
+    name = models.CharField(max_length=50, unique=True)
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = "Technologies"
+        ordering = ["priority", "name"]
+    
+    def __str__(self):
+        return self.name
+
+
 class Project(models.Model):
+    """
+    Represents a portfolio project, including links and the technology stack used.
+    """
+
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(upload_to='projects/', null=True, blank=True)
-    link = models.URLField(blank=True)
+    link = models.URLField(blank=True)  # demo URL
+    repo_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    tech_stack = models.ManyToManyField(
+        Technology, related_name='projects', blank=True
+    )
 
     def __str__(self):
         return self.title
 
 
 class Resume(models.Model):
+    """
+    Stores uploaded resume files, ensuring only one version is active at a time.
+    """
+
     file = models.FileField(upload_to="resumes/")
     uploaded_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)

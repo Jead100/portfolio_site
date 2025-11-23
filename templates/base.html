@@ -5,28 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan · Portfolio</title>
+    <!-- Favicons -->
+    {% include '_favicons.html' %}
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top backdrop-blur">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">Jordan Ascanoa</a>
+            <a class="navbar-brand fw-bold" href="/">Jordan Ascanoa<span class="text-primary">.</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <ul class="navbar-nav align-items-center"> <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mailto:{{ bio.email|default:'jordan@example.com' }}">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/Jead100/portfolio_site" target="_blank" rel="noopener">
+                            <i class="fab fa-github me-1"></i> Code
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:{{ bio.email }}"
+                           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Send me an email">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary btn-sm fw-bold px-4 rounded-pill" href="#resume">Resume</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -37,9 +51,9 @@
     {% endblock %}
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white text-center py-4">
+    <footer class="footer bg-dark text-center py-4">
         <div class="container">
-            <p class="mb-0">&copy; {% now "Y" %} Jordan Ascanoa. All rights reserved.</p>
+            <p class="mb-0 text-white">&copy; {% now "Y" %} Jordan Ascanoa. All rights reserved.</p>
         </div>
     </footer>
 

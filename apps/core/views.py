@@ -11,7 +11,7 @@ class PortfolioView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['bio'] = Bio.objects.first()
-        context['projects'] = Project.objects.all().order_by('-created_at')
+        context['projects'] = Project.objects.all().order_by('created_at')
         context['resume'] = Resume.objects.filter(is_active=True).first()
         context['skills'] = Skill.objects.filter(pinned=True).order_by('priority', 'name')
         return context

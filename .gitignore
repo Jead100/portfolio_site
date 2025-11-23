@@ -1,8 +1,15 @@
-env/
-venv/
 *.pyc
 __pycache__/
+
+# virtual environments
+env/
+venv/
+
+# data
 db.sqlite3
 staticfiles/
 media/
+portfolio_data.json
+portfolio_user.json
+
 .env

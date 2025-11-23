@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -10,9 +9,30 @@
                 {% if bio.profile_picture %}
                     <img src="{{ bio.profile_picture.url }}" alt="Profile" class="profile-img mb-4">
                 {% endif %}
-                <h1 class="display-4 fw-bold mb-3">{{ bio.first_name|default:"Jordan" }}</h1>
-                <p class="lead mb-4">{{ bio.tagline|default:"Innovative Developer | Problem Solver | Tech Enthusiast" }}</p>
-                <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
+                <h1 class="display-4 fw-bold mb-3">
+                    {{ bio.first_name|default:"Jordan" }}
+                </h1>
+                <p class="lead mb-4 text-white-50">
+                    {{ bio.tagline|default:"Innovative Developer | Problem Solver | Tech Enthusiast" }}
+                </p>
+                <div class="mb-4 social-links">
+                    <a href="{{ bio.github_url }}" target="_blank" class="text-white me-3 fs-4"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visit my GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="{{ bio.linkedin_url }}" target="_blank" class="text-white me-3 fs-4"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom" title="View my LinkedIn profile">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:{{ bio.email }}" class="text-white fs-4"
+                       data-bs-toggle="tooltip" data-bs-placement="bottom" title="Send me an email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <a href="#about" class="btn btn-primary btn-lg rounded-pill px-4 py-2">
+                    I'm Looking for an Internship
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -22,13 +42,43 @@
 <section id="about" class="py-5">
     <div class="container">
         <div class="row align-items-center">
+            <!-- Bio & Info section -->
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h2 class="fw-bold mb-4">About Me</h2>
-                <p class="lead">{{ bio.description|default:"Passionate software engineer with a track record of building scalable applications and solving complex problems. Experienced in full-stack development, with a focus on clean code and user-centric design." }}</p>
-                <p><strong>Email:</strong> <a href="mailto:{{ bio.email|default:'your.email@example.com' }}">{{ bio.email|default:"your.email@example.com" }}</a></p>
+                <p class="lead">
+                    {{ bio.description|default:"Passionate software engineer with a track record of building scalable applications and solving complex problems. Experienced in full-stack development, with a focus on clean code and user-centric design." }}
+                </p>
+                <div class="about-info mt-4">
+                    <p class="info-row">
+                        <i class="fas fa-envelope me-1"></i>
+                        <strong>Email:</strong>
+                        <a href="mailto:{{ bio.email }}">{{ bio.email }}</a>
+                    </p>
+                    <p class="info-row">
+                        <i class="fas fa-code me-1"></i>
+                        <strong>Focus:</strong>
+                        Back-end development, REST APIs, auth, cloud deployment.
+                    </p>
+                    <p class="info-row">
+                        <i class="fas fa-briefcase me-1"></i>
+                        <strong>Seeking:</strong>
+                        Spring/Summer 2026 SWE Internship (Back-End / Platform / API).
+                    </p>
+                    <p class="info-row">
+                        <i class="fas fa-link me-1"></i>
+                        <strong>Links:</strong>
+                        <a href="{{ bio.linkedin_url }}" target="_blank">
+                            <i class="fab fa-linkedin me-1"></i>LinkedIn
+                        </a> 
+                        ·
+                        <a href="{{ bio.github_url }}" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </p>
+                </div>
             </div>
             <div class="col-lg-6">
-                <!-- Skills Section -->
+                <!-- Skills section -->
                 <div class="skills-card bg-light p-4 rounded shadow">
                     <h5 class="fw-bold mb-3">Key Skills</h5>
                     <ul class="list-unstyled">
@@ -55,18 +105,44 @@
         <div class="row">
             {% for project in projects %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow border-0 rounded overflow-hidden">
+                    <div class="card h-100 shadow border-0 rounded-3 overflow-hidden project-card">
                         {% if project.image %}
-                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
                         {% endif %}
-                        <div class="card-body">
+                        <!-- Description -->
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-bold">{{ project.title }}</h5>
-                            <p class="card-text">{{ project.description }}</p>
+                            <p class="card-text text-muted small flex-grow-1">
+                                {{ project.description }}
+                            </p>
                         </div>
-                        <div class="card-footer bg-transparent border-0">
-                            {% if project.link %}
-                                <a href="{{ project.link }}" class="btn btn-outline-primary w-100" target="_blank">View Project</a>
-                            {% endif %}
+                        <!-- Tech stack -->
+                        <div class="p-3 pt-0">
+                            {% for tech in project.tech_stack.all %}
+                                <span class="badge bg-light text-dark border me-1 mb-1">
+                                    {{ tech.name }}
+                                </span>
+                            {% empty %}
+                                <span class="small text-muted fst-italic">No tech stack yet.</span> 
+                            {% endfor %}
+                        </div>
+                        <!-- Buttons -->
+                        <div class="d-flex">
+                            <div class="flex-fill" style="background-color: #388effff;">
+                                {% if project.link %}
+                                    <a href="{{ project.link }}" 
+                                    class="btn btn-primary rounded-0 btn-sm w-100" target="_blank">
+                                        <i class="fas fa-external-link-alt me-1"></i>Demo
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="flex-fill" style="background-color: #050505d8;">
+                                {% if project.repo_url %}
+                                    <a href="{{ project.repo_url }}" target="_blank" class="btn btn-code rounded-0 btn-sm w-100">
+                                        <i class="fab fa-github me-1"></i>Code
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,10 +157,12 @@
 <section id="resume" class="py-5">
     <div class="container text-center">
         <h2 class="fw-bold mb-4">Resume</h2>
-        <p class="lead mb-4">Download my resume to explore my professional journey, skills, and achievements in detail.</p>
+        <p class="lead mb-4">
+            Download my resume for a detailed overview of my skills and projects.
+        </p>
         {% if resume %}
-            <a href="{% url 'resume_download' %}" class="btn btn-primary btn-lg">
-                Download Resume
+            <a href="{% url 'resume_download' %}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                Download My Resume (PDF)
             </a>
         {% else %}
             <button class="btn btn-secondary btn-lg" disabled>
