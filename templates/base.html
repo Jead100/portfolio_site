@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan · Portfolio</title>
+    <title>{{ bio.first_name|default:"Jordan" }} · Portfolio</title>
     <!-- Favicons -->
     {% include '_favicons.html' %}
     <!-- Bootstrap CSS -->
@@ -20,7 +20,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top backdrop-blur">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">Jordan Ascanoa<span class="text-primary">.</span></a>
+            <a class="navbar-brand fw-bold" href="/">{{ bio.name|default:"Jordan Ascanoa" }}<span class="text-primary">.</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,7 +53,7 @@
     <!-- Footer -->
     <footer class="footer bg-dark text-center py-4">
         <div class="container">
-            <p class="mb-0 text-white">&copy; {% now "Y" %} Jordan Ascanoa. All rights reserved.</p>
+            <p class="mb-0 text-white">&copy; {% now "Y" %} {{ bio.name|default:"Jordan Ascanoa" }}. All rights reserved.</p>
         </div>
     </footer>
 

@@ -1,0 +1,275 @@
+[
+    {
+        "model": "core.bio",
+        "pk": 1,
+        "fields": {
+            "name": "John Alpaca",
+            "tagline": "Backend-focused Software Developer",
+            "description": "John Alpaca is a backend-focused software developer who builds reliable APIs, database-driven applications, and developer-friendly tooling.",
+            "email": "john.alpaca@example.com",
+            "github_url": "https://github.com/johnalpaca",
+            "linkedin_url": "https://www.linkedin.com/in/johnalpaca",
+            "profile_picture": "profiles/john_alpaca_profile.png"
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 1,
+        "fields": {
+            "name": "Python",
+            "category": "backend",
+            "level": 4,
+            "priority": 1,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 2,
+        "fields": {
+            "name": "Django",
+            "category": "backend",
+            "level": 4,
+            "priority": 2,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 3,
+        "fields": {
+            "name": "Django REST Framework",
+            "category": "backend",
+            "level": 4,
+            "priority": 3,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 4,
+        "fields": {
+            "name": "PostgreSQL",
+            "category": "data",
+            "level": 3,
+            "priority": 4,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 5,
+        "fields": {
+            "name": "HTML & CSS",
+            "category": "frontend",
+            "level": 4,
+            "priority": 5,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 6,
+        "fields": {
+            "name": "JavaScript",
+            "category": "frontend",
+            "level": 3,
+            "priority": 6,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 7,
+        "fields": {
+            "name": "Bootstrap",
+            "category": "frontend",
+            "level": 3,
+            "priority": 7,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 8,
+        "fields": {
+            "name": "Docker",
+            "category": "devops",
+            "level": 2,
+            "priority": 8,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 9,
+        "fields": {
+            "name": "Git & GitHub",
+            "category": "tools",
+            "level": 4,
+            "priority": 9,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.skill",
+        "pk": 10,
+        "fields": {
+            "name": "Linux & CLI",
+            "category": "tools",
+            "level": 3,
+            "priority": 10,
+            "pinned": true
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 1,
+        "fields": {
+            "name": "Python",
+            "priority": 1
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 2,
+        "fields": {
+            "name": "Django",
+            "priority": 2
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 3,
+        "fields": {
+            "name": "Django REST Framework",
+            "priority": 3
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 4,
+        "fields": {
+            "name": "PostgreSQL",
+            "priority": 4
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 5,
+        "fields": {
+            "name": "HTML5",
+            "priority": 5
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 6,
+        "fields": {
+            "name": "CSS3",
+            "priority": 6
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 7,
+        "fields": {
+            "name": "JavaScript",
+            "priority": 7
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 8,
+        "fields": {
+            "name": "Bootstrap",
+            "priority": 8
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 9,
+        "fields": {
+            "name": "Docker",
+            "priority": 9
+        }
+    },
+    {
+        "model": "core.technology",
+        "pk": 10,
+        "fields": {
+            "name": "GitHub Actions",
+            "priority": 10
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": 1,
+        "fields": {
+            "title": "Event Scheduling App",
+            "description": "A full-stack scheduling application for creating events, assigning time slots, and managing RSVPs. Built with Django, DRF, and a lightweight Bootstrap frontend.",
+            "image": "projects/event_scheduler.png",
+            "link": "https://demo.johnalpaca.dev/event-scheduler",
+            "repo_url": "https://github.com/johnalpaca/event-scheduler",
+            "created_at": "2024-01-12T12:00:00Z",
+            "tech_stack": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                7,
+                8
+            ]
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": 2,
+        "fields": {
+            "title": "Media Gallery Manager",
+            "description": "A simple full-stack application for uploading, tagging, searching, and browsing media files with a clean and responsive UI.",
+            "image": "projects/media_gallery.png",
+            "link": "https://demo.johnalpaca.dev/media-gallery",
+            "repo_url": "https://github.com/johnalpaca/media-gallery",
+            "created_at": "2024-02-05T12:00:00Z",
+            "tech_stack": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                8
+            ]
+        }
+    },
+    {
+        "model": "core.project",
+        "pk": 3,
+        "fields": {
+            "title": "Task Tracker Dashboard",
+            "description": "A task tracking dashboard with API endpoints for creating, updating, and filtering tasks, plus a simple frontend dashboard.",
+            "image": "projects/task_tracker.png",
+            "link": "https://demo.johnalpaca.dev/task-tracker",
+            "repo_url": "https://github.com/johnalpaca/task-tracker",
+            "created_at": "2024-03-05T12:00:00Z",
+            "tech_stack": [
+                1,
+                2,
+                3,
+                4,
+                7
+            ]
+        }
+    },
+    {
+        "model": "core.resume",
+        "pk": 1,
+        "fields": {
+            "file": "resumes/john_alpaca_resume.pdf",
+            "uploaded_at": "2024-03-10T12:00:00Z",
+            "is_active": true
+        }
+    }
+]

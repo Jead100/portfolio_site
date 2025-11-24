@@ -23,10 +23,12 @@ def download_resume(request):
     if not resume:
         raise Http404('No active resume.')
     
+    bio_name = str(Bio.objects.first().name)
+
     resp = FileResponse(
         resume.file.open('rb'),
         as_attachment=True,
-        filename="Jordan-Ascanoa-Resume.pdf",
+        filename=f"{bio_name.replace(' ', '-')}-Resume.pdf",
         content_type='application/pdf',
     )
 

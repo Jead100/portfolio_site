@@ -1,15 +1,35 @@
+# Python cache files
 *.pyc
 __pycache__/
 
-# virtual environments
+# Virtual environments
 env/
 venv/
 
-# data
+# Django & project data
 db.sqlite3
 staticfiles/
-media/
-portfolio_data.json
-portfolio_user.json
 
+# Environment variables
 .env
+
+# Fixtures
+fixtures/*
+
+# allow demo fixture
+!fixtures/demo_data.json
+
+# Media files
+media/*
+
+# allow media folders
+!media/profiles/
+!media/projects/
+!media/resumes/
+
+# allow demo media files
+!media/profiles/john_alpaca_profile.png
+!media/projects/event_scheduler.png
+!media/projects/media_gallery.png
+!media/projects/task_tracker.png
+!media/resumes/john_alpaca_resume.pdf
