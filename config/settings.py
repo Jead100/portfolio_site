@@ -8,10 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 # Toggle admin site availability across dev and prod environments
-ADMIN_SITE = config('ADMIN_SITE', cast=bool, default=False)
+ADMIN_SITE = config('ADMIN_SITE', cast=bool, default=True)
 
 ALLOWED_HOSTS = [
     'localhost',
