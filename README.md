@@ -106,6 +106,20 @@ Your local site will now be available at:
 http://127.0.0.1:8000/
 ```
 
+### 🔐 Extra: Create a superuser (to add your own content)
+
+If you'd like to add or edit your own bio, skills, projects, and resume using the Django admin site, create an admin user:
+
+```bash
+python manage.py createsuperuser
+```
+
+Once created, log in at:
+
+```
+http://127.0.0.1:8000/admin/
+```
+
 ## 📸 Screenshots
 
 Below are example previews of the site populated with demo data:
